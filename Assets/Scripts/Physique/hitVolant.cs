@@ -27,43 +27,45 @@ public class hitVolant : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        Rigidbody rb = transform.GetComponent<Rigidbody>();
         if (collision.gameObject.tag.Equals("raquette") == true) // On applique le changement de velocite que si l'objet a le tag raquette
         {
-            initVelocity.x = 1f; initVelocity.y = 1f; initVelocity.z = 1f;
+            initVelocity.x = 10f; initVelocity.y = 10f; initVelocity.z = 0f;
             posHit = this.transform.position;
             t = 0;
+            rb.isKinematic = true;
 
         }
+        else
+        {
+            rb.isKinematic = false;
+            Debug.Log("AAAA");
+        }
+
     }
 
     // Update is called once per frame
     void Update()
     {
-
-
-        if (posHit != Vector3.zero)
+        Rigidbody rb = transform.GetComponent<Rigidbody>();
+        if (rb.isKinematic == true)
         {
-            Rigidbody rb = transform.GetComponent<Rigidbody>();
-            t += 0.001;
+            t += 1f/60;
             double vxi = initVelocity.x;
             double vyi = initVelocity.y;
             double vt = 4.5;
             double g = 9.81;
 
-
             double vx = vxi * vt*vt/ (vxi * g * t + vt*vt);
-            double temp = 1 + (vyi / vt) * Mathf.Tan((float) (t * g / vt));
-            double vy = vyi - vt * Mathf.Tan((float)(t * g / vt));
-            vy /= temp;
+            double vy = (vt + vyi) * Mathf.Exp((float) (-1 * t* g / vt)) - vt;
 
             velocity.x = (float) vx;
             velocity.y = (float) vy;
             velocity.z = 0;
 
-            rb.MovePosition(transform.position + velocity/100);
+            rb.MovePosition(transform.position + velocity/60);
 
 
         }
-        //this.transform.Translate(velocity/60);
     }
 }
