@@ -12,6 +12,7 @@ public class FiledColliderEvent : MonoBehaviour
         InRightField,
         InFrontField,
         InBackField,
+        Net
     }
 
     [SerializeField] private EFieldType _type;
