@@ -1,9 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.VFX;
 using static UnityEngine.GraphicsBuffer;
+using Debug = UnityEngine.Debug;
 
 // Script permettant de frapper corectement le volant
 public class hitVolant : MonoBehaviour
@@ -15,6 +17,7 @@ public class hitVolant : MonoBehaviour
     private Vector3 velocity;
     private Vector3 posHit;
     double t;
+    Stopwatch watchHit;
   
     // Start is called before the first frame update
     void Start()
@@ -23,23 +26,25 @@ public class hitVolant : MonoBehaviour
         posHit = Vector3.zero;
         initRotation = Vector3.zero;
         t = 0;
+        watchHit = new Stopwatch();
 
 
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
         Rigidbody rb = transform.GetComponent<Rigidbody>();
-        if (collision.gameObject.tag.Equals("raquette") == true) // On applique le changement de velocite que si l'objet a le tag raquette
+        Debug.Log("O");
+
+        if (other.gameObject.tag.Equals("raquette") == true && (watchHit.ElapsedMilliseconds > 100 || !watchHit.IsRunning)) // On applique le changement de velocite que si l'objet a le tag raquette
         {
             //initVelocity.x = 10f; initVelocity.y = 10f; initVelocity.z = 0f;
             t = 0;
             rb.isKinematic = true;
-            initRotation = collision.GetContact(0).normal;
+            initRotation = other.transform.rotation.eulerAngles;
+            initVelocity = 2 * other.transform.GetComponent<Rigidbody>().velocity;
             Debug.Log(initRotation);
-            initVelocity.x = 10f * initRotation.x;
-            initVelocity.y = 10f * initRotation.y;
-            initVelocity.z = 10f * initRotation.z;
+            watchHit.Start();
             Debug.Log("A");
 
             Debug.Log(initVelocity);
@@ -54,10 +59,48 @@ public class hitVolant : MonoBehaviour
         }
         else
         {
+            Debug.Log("W");
+
+            watchHit.Reset();
+            //rb.isKinematic = false;
+        }
+
+
+    }
+
+    /*
+    private void OnCollisionEnter(Collision collision)
+    {
+        Rigidbody rb = transform.GetComponent<Rigidbody>();
+        if (collision.gameObject.tag.Equals("raquette") == true && (watchHit.ElapsedMilliseconds > 100 || !watchHit.IsRunning)) // On applique le changement de velocite que si l'objet a le tag raquette
+        {
+            //initVelocity.x = 10f; initVelocity.y = 10f; initVelocity.z = 0f;
+            t = 0;
+            rb.isKinematic = true;
+            initRotation = collision.GetContact(0).normal;
+            Debug.Log(initRotation);
+            initVelocity = 2*collision.rigidbody.GetPointVelocity(collision.GetContact(0).point);
+            watchHit.Start();
+            Debug.Log("A");
+
+            Debug.Log(initVelocity);
+
+            Debug.Log("B");
+
+            Debug.Log(transform.position);
+
+
+            Debug.DrawRay(transform.position, initVelocity, Color.red, 30f);
+
+        }
+        else
+        {
+            watchHit.Reset();
             rb.isKinematic = false;
         }
 
     }
+    */
 
     // Update is called once per frame
     void Update()
@@ -76,9 +119,9 @@ public class hitVolant : MonoBehaviour
             double vx = vxi * vt*vt/ (vxi * g * t + vt*vt);
             double vy = (vt + vyi) * Mathf.Exp((float) (-1 * t* g / vt)) - vt;
 
-            velocity.x = (float) vx * initRotation.x;
+            velocity.x = (float) vx * Mathf.Cos(initRotation.x);
             velocity.y = (float) vy;
-            velocity.z = (float) vx * initRotation.z;
+            velocity.z = (float) vx * Mathf.Cos(initRotation.z);
 
 
             rb.MovePosition(transform.position + velocity/60);
