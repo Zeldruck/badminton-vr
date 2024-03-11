@@ -34,17 +34,19 @@ public class hitVolant : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         Rigidbody rb = transform.GetComponent<Rigidbody>();
-        Debug.Log("O");
+        //Debug.Log("O");
+        //Debug.Log(other.gameObject);
 
-        if (other.gameObject.tag.Equals("raquette") == true && (watchHit.ElapsedMilliseconds > 100 || !watchHit.IsRunning)) // On applique le changement de velocite que si l'objet a le tag raquette
+        if (other.gameObject.tag.Equals("raquette") == true) // && (watchHit.ElapsedMilliseconds > 100 || !watchHit.IsRunning)) // On applique le changement de velocite que si l'objet a le tag raquette
         {
             //initVelocity.x = 10f; initVelocity.y = 10f; initVelocity.z = 0f;
             t = 0;
             rb.isKinematic = true;
             initRotation = other.transform.rotation.eulerAngles;
             initVelocity = 2 * other.transform.GetComponent<Rigidbody>().velocity;
-            Debug.Log(initRotation);
+            //Debug.Log(initRotation);
             watchHit.Start();
+            /*
             Debug.Log("A");
 
             Debug.Log(initVelocity);
@@ -55,12 +57,12 @@ public class hitVolant : MonoBehaviour
 
 
             Debug.DrawRay(transform.position, initVelocity, Color.red, 30f);
-
+            */
         }
         else
         {
             Debug.Log("W");
-
+            rb.isKinematic = false;
             watchHit.Reset();
             //rb.isKinematic = false;
         }
@@ -109,8 +111,9 @@ public class hitVolant : MonoBehaviour
         Rigidbody rb = transform.GetComponent<Rigidbody>();
         if (rb.isKinematic == true)
         {
-
+            
             t += 1f/60;
+            Debug.Log(t);
             double vxi = Mathf.Sqrt(initVelocity.x * initVelocity.x + initVelocity.z* initVelocity.z);
             double vyi = initVelocity.y;
             double vt = 4.5;
