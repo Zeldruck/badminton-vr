@@ -35,17 +35,29 @@ public class hitVolant : MonoBehaviour
     {
         Rigidbody rb = transform.GetComponent<Rigidbody>();
         //Debug.Log("O");
-        //Debug.Log(other.gameObject);
+        Debug.Log("A");
+        Debug.Log(other.gameObject);
 
         if (other.gameObject.tag.Equals("raquette") == true) // && (watchHit.ElapsedMilliseconds > 100 || !watchHit.IsRunning)) // On applique le changement de velocite que si l'objet a le tag raquette
         {
             //initVelocity.x = 10f; initVelocity.y = 10f; initVelocity.z = 0f;
-            t = 0;
-            rb.isKinematic = true;
+
             initRotation = other.transform.rotation.eulerAngles;
-            initVelocity = 2 * other.transform.GetComponent<Rigidbody>().velocity;
-            //Debug.Log(initRotation);
-            watchHit.Start();
+            initVelocity = 3 * other.transform.GetComponent<Rigidbody>().velocity;
+            Collider col = transform.GetComponent<Collider>();
+
+            if (initVelocity.magnitude >= 3) // Si trop lent, physique de base
+            {
+                t = 0;
+                rb.isKinematic = true;
+                Debug.Log("B");
+                watchHit.Start();
+            }
+            else
+            {
+                col.isTrigger = false;
+            }
+
             /*
             Debug.Log("A");
 
@@ -55,6 +67,7 @@ public class hitVolant : MonoBehaviour
 
             Debug.Log(transform.position);
 
+                        Debug.Log("W");
 
             Debug.DrawRay(transform.position, initVelocity, Color.red, 30f);
             */
@@ -108,10 +121,13 @@ public class hitVolant : MonoBehaviour
     void Update()
     {
 
+        Collider col = transform.GetComponent<Collider>();
+
+
         Rigidbody rb = transform.GetComponent<Rigidbody>();
         if (rb.isKinematic == true)
         {
-            
+            col.isTrigger = true;
             t += 1f/60;
             Debug.Log(t);
             double vxi = Mathf.Sqrt(initVelocity.x * initVelocity.x + initVelocity.z* initVelocity.z);
@@ -130,6 +146,9 @@ public class hitVolant : MonoBehaviour
             rb.MovePosition(transform.position + velocity/60);
 
 
+        }
+        else if(rb.velocity.magnitude >= 3) { // Si pas lent, passage sur notre physique
+            col.isTrigger = true;
         }
     }
 }
