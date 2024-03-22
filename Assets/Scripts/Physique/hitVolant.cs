@@ -34,9 +34,47 @@ public class hitVolant : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         Rigidbody rb = transform.GetComponent<Rigidbody>();
+
         //Debug.Log("O");
         Debug.Log("A");
         Debug.Log(other.gameObject);
+        if (other.gameObject.tag.Equals("raquette") == true) // && (watchHit.ElapsedMilliseconds > 100 || !watchHit.IsRunning)) // On applique le changement de velocite que si l'objet a le tag raquette
+        {
+            //initVelocity.x = 10f; initVelocity.y = 10f; initVelocity.z = 0f;
+
+            initRotation = other.transform.rotation.eulerAngles;
+            initVelocity = 3 * other.transform.GetComponent<Rigidbody>().velocity;
+            Collider col = transform.GetComponent<Collider>();
+
+            if (initVelocity.magnitude >= 3 && (initVelocity.magnitude >= other.transform.GetComponent<Rigidbody>().velocity.magnitude)) // Si trop lent, physique de base
+            {
+                t = 0;
+                rb.isKinematic = true;
+                Debug.Log("B");
+                watchHit.Start();
+            }
+            else
+            {
+                col.isTrigger = false;
+            }
+
+
+
+        }
+
+        else
+        {
+            Debug.Log("W");
+            rb.isKinematic = false;
+            watchHit.Reset();
+            //rb.isKinematic = false;
+        }
+    }
+
+    /*
+    public void OnTriggerExit(Collider other)
+    {
+        Rigidbody rb = transform.GetComponent<Rigidbody>();
 
         if (other.gameObject.tag.Equals("raquette") == true) // && (watchHit.ElapsedMilliseconds > 100 || !watchHit.IsRunning)) // On applique le changement de velocite que si l'objet a le tag raquette
         {
@@ -46,7 +84,7 @@ public class hitVolant : MonoBehaviour
             initVelocity = 3 * other.transform.GetComponent<Rigidbody>().velocity;
             Collider col = transform.GetComponent<Collider>();
 
-            if (initVelocity.magnitude >= 3) // Si trop lent, physique de base
+            if (initVelocity.magnitude >= 3 && (initVelocity.magnitude >= other.transform.GetComponent<Rigidbody>().velocity.magnitude)) // Si trop lent, physique de base
             {
                 t = 0;
                 rb.isKinematic = true;
@@ -70,7 +108,7 @@ public class hitVolant : MonoBehaviour
                         Debug.Log("W");
 
             Debug.DrawRay(transform.position, initVelocity, Color.red, 30f);
-            */
+            
         }
         else
         {
@@ -79,9 +117,8 @@ public class hitVolant : MonoBehaviour
             watchHit.Reset();
             //rb.isKinematic = false;
         }
-
-
     }
+        */
 
     /*
     private void OnCollisionEnter(Collision collision)
