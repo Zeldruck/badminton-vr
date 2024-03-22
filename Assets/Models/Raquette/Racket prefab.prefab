@@ -6903,7 +6903,6 @@ GameObject:
   - component: {fileID: 7712351021356445762}
   - component: {fileID: 7888945545015873506}
   - component: {fileID: 7216167145231289078}
-  - component: {fileID: 8773770708626232796}
   m_Layer: 0
   m_Name: Racket prefab
   m_TagString: Untagged
@@ -6926,7 +6925,7 @@ Transform:
   - {fileID: 8172392129858692557}
   - {fileID: 7834324287415301696}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &8147497698715090778
 Rigidbody:
@@ -7145,22 +7144,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.75, y: 0.017004192, z: 0.22229421}
   m_Center: {x: 0, y: -0.15047231, z: -0.0022132248}
---- !u!114 &8773770708626232796
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7313439188738251222}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 19c2eff2568f4914d90551c2fd4ee251, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  right_controller: {fileID: 0}
-  left_controller: {fileID: 0}
-  duration: 0.1
-  amplitude: 0.8
 --- !u!1 &7315028714545462215
 GameObject:
   m_ObjectHideFlags: 0

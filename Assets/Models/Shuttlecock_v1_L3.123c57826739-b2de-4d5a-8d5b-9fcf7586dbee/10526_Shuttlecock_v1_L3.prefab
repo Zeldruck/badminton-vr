@@ -13,10 +13,10 @@ GameObject:
   - component: {fileID: 907496155249610542}
   - component: {fileID: 8669300718646378465}
   - component: {fileID: 3356515055868286135}
-  - component: {fileID: 6934897451338839352}
+  - component: {fileID: 592164794929345913}
   m_Layer: 0
   m_Name: 10526_Shuttlecock_v1_L3
-  m_TagString: Untagged
+  m_TagString: Shuttlecock
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -28,7 +28,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3856804787639468890}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -36,7 +36,7 @@ Transform:
   - {fileID: 873980872160553097}
   - {fileID: 7006975069827469512}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &1940248006640108517
 Rigidbody:
@@ -47,7 +47,7 @@ Rigidbody:
   m_GameObject: {fileID: 3856804787639468890}
   serializedVersion: 4
   m_Mass: 1
-  m_Drag: 0
+  m_Drag: 0.5
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
@@ -115,10 +115,46 @@ MonoBehaviour:
       m_Calls: []
   m_SelectEntered:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 592164794929345913}
+        m_TargetAssemblyTypeName: Haptics, Assembly-CSharp
+        m_MethodName: sendHaptics
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 8576338957156817310}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_SelectExited:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 8576338957156817310}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
   m_FirstFocusEntered:
     m_PersistentCalls:
       m_Calls: []
@@ -255,7 +291,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.09293157, y: 0.09516807, z: 0.06292352}
   m_Center: {x: 0.00094494224, y: 0.00021161884, z: 0.081263684}
---- !u!114 &6934897451338839352
+--- !u!114 &592164794929345913
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -362,6 +398,46 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 5551514342645747768}
     m_Modifications:
+    - target: {fileID: 3668133487469920732, guid: 8995f7a78b36e7447b930103a055ae08, type: 3}
+      propertyPath: m_Time
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3668133487469920732, guid: 8995f7a78b36e7447b930103a055ae08, type: 3}
+      propertyPath: m_MinVertexDistance
+      value: 0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 3668133487469920732, guid: 8995f7a78b36e7447b930103a055ae08, type: 3}
+      propertyPath: m_Parameters.widthCurve.m_Curve.Array.data[0].time
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3668133487469920732, guid: 8995f7a78b36e7447b930103a055ae08, type: 3}
+      propertyPath: m_Parameters.widthCurve.m_Curve.Array.data[0].value
+      value: 0.099283576
+      objectReference: {fileID: 0}
+    - target: {fileID: 3668133487469920732, guid: 8995f7a78b36e7447b930103a055ae08, type: 3}
+      propertyPath: m_Parameters.widthCurve.m_Curve.Array.data[0].inSlope
+      value: 0.031505384
+      objectReference: {fileID: 0}
+    - target: {fileID: 3668133487469920732, guid: 8995f7a78b36e7447b930103a055ae08, type: 3}
+      propertyPath: m_Parameters.widthCurve.m_Curve.Array.data[1].inSlope
+      value: -0.27571478
+      objectReference: {fileID: 0}
+    - target: {fileID: 3668133487469920732, guid: 8995f7a78b36e7447b930103a055ae08, type: 3}
+      propertyPath: m_Parameters.widthCurve.m_Curve.Array.data[0].outSlope
+      value: 0.031505384
+      objectReference: {fileID: 0}
+    - target: {fileID: 3668133487469920732, guid: 8995f7a78b36e7447b930103a055ae08, type: 3}
+      propertyPath: m_Parameters.widthCurve.m_Curve.Array.data[1].inWeight
+      value: 0.22703826
+      objectReference: {fileID: 0}
+    - target: {fileID: 3668133487469920732, guid: 8995f7a78b36e7447b930103a055ae08, type: 3}
+      propertyPath: m_Parameters.widthCurve.m_Curve.Array.data[1].outSlope
+      value: -0.27571478
+      objectReference: {fileID: 0}
+    - target: {fileID: 3668133487469920732, guid: 8995f7a78b36e7447b930103a055ae08, type: 3}
+      propertyPath: m_Parameters.widthCurve.m_Curve.Array.data[0].outWeight
+      value: 0.96904016
+      objectReference: {fileID: 0}
     - target: {fileID: 5655249936058997634, guid: 8995f7a78b36e7447b930103a055ae08, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -376,7 +452,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5655249936058997634, guid: 8995f7a78b36e7447b930103a055ae08, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.11
+      value: 0.1106
       objectReference: {fileID: 0}
     - target: {fileID: 5655249936058997634, guid: 8995f7a78b36e7447b930103a055ae08, type: 3}
       propertyPath: m_LocalRotation.w
@@ -418,5 +494,10 @@ PrefabInstance:
 --- !u!4 &7006975069827469512 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5655249936058997634, guid: 8995f7a78b36e7447b930103a055ae08, type: 3}
+  m_PrefabInstance: {fileID: 3406618427657112394}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &8576338957156817310 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6360203895047738068, guid: 8995f7a78b36e7447b930103a055ae08, type: 3}
   m_PrefabInstance: {fileID: 3406618427657112394}
   m_PrefabAsset: {fileID: 0}
