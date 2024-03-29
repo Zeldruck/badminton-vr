@@ -3550,6 +3550,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: 10526_Shuttlecock_v1_L3
       objectReference: {fileID: 0}
+    - target: {fileID: 3856804787639468890, guid: 2babeff96b37bef4f927854075e83ad6, type: 3}
+      propertyPath: m_TagString
+      value: Shuttlecock
+      objectReference: {fileID: 0}
     - target: {fileID: 5551514342645747768, guid: 2babeff96b37bef4f927854075e83ad6, type: 3}
       propertyPath: m_RootOrder
       value: 1

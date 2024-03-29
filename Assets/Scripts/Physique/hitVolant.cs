@@ -102,7 +102,7 @@ public class hitVolant : MonoBehaviour
 
         }
 
-        else if (collision.gameObject.tag.Equals("raquette") == false)
+        else if (collision.gameObject.tag.Equals("raquette") == false || watchHit.ElapsedMilliseconds > 100)
         {
             Debug.Log("W");
             rb.isKinematic = false;
