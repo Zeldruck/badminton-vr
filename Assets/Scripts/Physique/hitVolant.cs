@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
+using TMPro;
 using Unity.VisualScripting;
 using Unity.VisualScripting.Antlr3.Runtime.Tree;
 using UnityEngine;
@@ -13,21 +15,25 @@ public class hitVolant : MonoBehaviour
 {
 
     public float coefVelocite = 2;
-    private float initVelocity;
+    private Vector3 initVelocity;
     private Vector3 initRotation;
     private Vector3 velocity;
     private Vector3 posHit;
     double t;
     Stopwatch watchHit;
+    Boolean hit;
   
     // Start is called before the first frame update
     void Start()
     {
-        initVelocity = 0;
+        initVelocity = Vector3.zero;
         posHit = Vector3.zero;
         initRotation = Vector3.zero;
         t = 0;
         watchHit = new Stopwatch();
+        hit = false;
+        watchHit.Start();
+
 
 
     }
@@ -38,10 +44,9 @@ public class hitVolant : MonoBehaviour
 
         //if (collision.gameObject.tag.Equals("raquette") == false) // && (watchHit.ElapsedMilliseconds > 100 || !watchHit.IsRunning)) // On applique le changement de velocite que si l'objet a le tag raquette
         //{
-            rb.isKinematic = false;
+        rb.isKinematic = false;
         Debug.Log("A");
-        watchHit.Start();
-        initVelocity = 0;
+        //initVelocity = Vector3.zero;
 
         //}
     }
@@ -49,49 +54,60 @@ public class hitVolant : MonoBehaviour
 
     private void OnCollisionStay(Collision collision)
     {
-        if (collision.gameObject.tag.Equals("raquette") == true && 2 * collision.transform.GetComponent<Rigidbody>().velocity.magnitude >= initVelocity)
-        {
-            initVelocity = 2*collision.transform.GetComponent<Rigidbody>().velocity.magnitude;
-            Debug.Log("C");
-        }
+       // if (collision.gameObject.tag.Equals("raquette") == true && 2 * collision.transform.GetComponent<Rigidbody>().velocity.magnitude >= initVelocity)
+       // {
+            //initVelocity = 2*collision.transform.GetComponent<Rigidbody>().velocity.magnitude;
+            //Debug.Log("C");
+        //}
     }
 
     private void OnCollisionExit(Collision collision)
     {
         Rigidbody rb = transform.GetComponent<Rigidbody>();
+        Debug.Log(collision.gameObject);
+        Debug.Log("E");
 
-        if (collision.gameObject.tag.Equals("raquette") == true ) // && (watchHit.ElapsedMilliseconds > 100 || !watchHit.IsRunning)) // On applique le changement de velocite que si l'objet a le tag raquette
+
+        if (collision.gameObject.tag.Equals("raquette") == true && this.gameObject.tag.Equals("Shuttlecock") && (watchHit.ElapsedMilliseconds > 100 || !watchHit.IsRunning)) // On applique le changement de velocite que si l'objet a le tag raquette
         {
-            if(watchHit.ElapsedMilliseconds >= 10)
-            {
-                //initVelocity.x = 10f; initVelocity.y = 10f; initVelocity.z = 0f;
+            //if(watchHit.ElapsedMilliseconds >= 10)
+            //{
+            //initVelocity.x = 10f; initVelocity.y = 10f; initVelocity.z = 0f;
+            Debug.Log("B");
 
-                initRotation = collision.GetContact(0).normal;
-  
+            //initRotation = collision.GetContact(0).normal;
+            initVelocity = rb.velocity;
+            initRotation = initVelocity.normalized;
 
-                float oldVelocity = rb.velocity.magnitude;
-                Collider col = transform.GetComponent<Collider>();
+            // float oldVelocity = rb.velocity.magnitude;
+            //Collider col = transform.GetComponent<Collider>();
 
-
-
-                t = 0;
-                rb.isKinematic = true;
-                Debug.Log("B");
-
-                watchHit.Reset();
+            //initRotation = collision.GetContact(0).normal;
 
 
-            }
+            t = 0;
+            rb.isKinematic = true;
+            hit = true;
+            Debug.Log("U");
+
+            watchHit.Reset();
+            watchHit.Start();
+
+            Debug.Log(initVelocity);
+
+            Debug.Log(initRotation);
+            //}
 
 
 
         }
 
-        else
+        else if (collision.gameObject.tag.Equals("raquette") == false)
         {
             Debug.Log("W");
             rb.isKinematic = false;
-            initVelocity = 0;
+            hit = false;
+            //initVelocity = Vector3.zero;
             //rb.isKinematic = false;
         }
     }
@@ -187,8 +203,9 @@ public class hitVolant : MonoBehaviour
 
 
         Rigidbody rb = transform.GetComponent<Rigidbody>();
-        if (rb.isKinematic == true)
+        if (rb.isKinematic == true && hit == true)
         {
+            /*
             t += 1f/600;
             double vxi = Mathf.Abs(initVelocity * Mathf.Sin(Mathf.Deg2Rad * initRotation.y));
             double vyi = initVelocity * Mathf.Cos(Mathf.Deg2Rad * initRotation.y);
@@ -205,7 +222,25 @@ public class hitVolant : MonoBehaviour
             Debug.Log("Velo");
             Debug.Log(initRotation);
             rb.MovePosition(transform.position + velocity/600);
+            */
+            t += 1f / 60;
+            double vxi = Mathf.Sqrt(initVelocity.x * initVelocity.x + initVelocity.z * initVelocity.z);
+            double vyi = initVelocity.y;
+            double vt = 4.5;
+            double g = 9.81;
 
+            double vx = vxi * vt * vt / (vxi * g * t + vt * vt);
+            double vy = (vt + vyi) * Mathf.Exp((float)(-1 * t * g / vt)) - vt;
+
+            velocity.x = (float)vx * initRotation.x;
+            velocity.y = (float)vy;
+            velocity.z = (float)vx * initRotation.z;
+
+            Debug.Log("Velo");
+            Debug.Log(initVelocity);
+
+            Debug.Log(initRotation);
+            rb.MovePosition(transform.position + velocity / 60);
 
         }
     }
