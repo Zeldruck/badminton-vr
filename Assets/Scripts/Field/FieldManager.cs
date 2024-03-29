@@ -3,6 +3,8 @@ using System;
 
 public class FieldManager : MonoBehaviour
 {
+    public static FieldManager instance;
+
     [SerializeField] private string shuttlecockTag;
     [Space]
     [SerializeField] private Transform[] _colliderRoots;
@@ -15,6 +17,18 @@ public class FieldManager : MonoBehaviour
     public Action<int> _inFrontFieldEvent;
     public Action<int> _inBackFieldEvent;
     public Action _netEvent;
+
+    private void Awake()
+    {
+        if (instance != null && instance != this)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            instance = this;
+        }
+    }
 
     private void Start()
     {
