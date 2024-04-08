@@ -14,11 +14,16 @@ public class FreeShotExercise : MonoBehaviour
 
     [Header("Util")]
     [SerializeField] private SCExercise _shuttleCockPrefab;
+    [SerializeField] private ExerciseScoreManager _scoreManager;
 
     [Header("Exercise Parameters")]
     [SerializeField] private int _shuttleCockExerciseNumber;
     [SerializeField] private float _waitTimeBetweenScore;
 
+    private void Awake()
+    {
+        _scoreManager = _scoreManager ?? FindAnyObjectByType<ExerciseScoreManager>();
+    }
 
     private void Start()
     {
@@ -104,16 +109,22 @@ public class FreeShotExercise : MonoBehaviour
 
     private void GoodShot()
     {
+        _scoreManager.AddGoodPoint();
+
         Debug.Log("Good Shot!");
     }
 
     private void BadShot()
     {
+        _scoreManager.AddBadPoints();
+
         Debug.Log("Bad Shot!");
     }
 
     private void MissedShot()
     {
+        _scoreManager.AddBadPoints();
+
         Debug.Log("Shot Missed!");
     }
 
