@@ -1,6 +1,8 @@
 using System;
 using System.Diagnostics;
 using UnityEngine;
+using UnityEngine.XR.Interaction.Toolkit;
+using Debug = UnityEngine.Debug;
 
 // Script permettant de frapper corectement le volant
 public class hitVolant : MonoBehaviour
@@ -12,7 +14,22 @@ public class hitVolant : MonoBehaviour
     double t;
     Stopwatch watchHit;
     Boolean hit;
-  
+    private XRGrabInteractable interactable;
+
+    [SerializeField]
+    XRBaseController right_controller;
+
+    [SerializeField]
+    XRBaseController left_controller;
+
+    public float duration = 0.3f;
+    public float amplitude = 1f;
+
+    private void Awake()
+    {
+        interactable = GetComponent<XRGrabInteractable>();
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -28,6 +45,11 @@ public class hitVolant : MonoBehaviour
     {
         Rigidbody rb = transform.GetComponent<Rigidbody>();
         rb.isKinematic = false; // Reactive les collisions quand on touche quelque chose
+        if (collision.gameObject.tag.Equals("raquette"))
+        {
+            sendHaptics();
+        }
+
     }
 
     private void OnCollisionExit(Collision collision)
@@ -43,6 +65,7 @@ public class hitVolant : MonoBehaviour
             hit = true;
             watchHit.Reset(); // Lance un timeur pour eviter le flicker
             watchHit.Start();
+
         }
 
         else if (collision.gameObject.tag.Equals("raquette") == false || watchHit.ElapsedMilliseconds > 100) // Le temps est la a cause du flicker des collisions exit
@@ -70,8 +93,21 @@ public class hitVolant : MonoBehaviour
             velocity.x = (float)vx * initRotation.x;
             velocity.y = (float)vy;
             velocity.z = (float)vx * initRotation.z;
+           
 
             rb.MovePosition(transform.position + velocity / 60); // Avance d'une frame
+        }
+    }
+
+    void sendHaptics()
+    {
+        if (right_controller != null)
+        {
+            right_controller.SendHapticImpulse(amplitude, duration);
+        }
+        else
+        {
+            Debug.Log("AAA");
         }
     }
 }
