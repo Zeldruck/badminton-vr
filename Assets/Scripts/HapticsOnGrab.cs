@@ -15,36 +15,13 @@ public class Haptics : MonoBehaviour
     public float duration = 0.1f;
     public float amplitude = 0.1f;
 
-    private XRGrabInteractable interactable;
-    private bool grabbed = false;
-
-    private void Awake()
-    {
-        interactable = GetComponent<XRGrabInteractable>();
-    }
-
     // Start is called before the first frame update
     void Start()
     {
         
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        if (interactable != null && interactable.isSelected)
-        {
-            if (!grabbed)
-            {
-                grabbed = true;
-                sendHaptics();
-            }
-        }
-        else
-            grabbed= false;
-    }
-
-    void sendHaptics()
+    public void sendHaptics()
     {
         if(right_controller != null)
         {
