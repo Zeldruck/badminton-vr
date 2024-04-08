@@ -1,0 +1,11 @@
+{
+  "name": "com.zeldruck.flexiblegridlayout",
+  "version": "1.0.0",
+  "displayName": "Flexible Grid Layout",
+  "description": "Flexible grid layout, most permissive than the current unity grid layout.",
+  "unity": "2019.1",
+  "unityRelease": "0b5",
+  "author": {
+    "name": "Zeldruck"
+  }
+}
