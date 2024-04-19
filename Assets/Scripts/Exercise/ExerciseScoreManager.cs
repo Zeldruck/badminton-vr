@@ -5,6 +5,8 @@ public class ExerciseScoreManager : MonoBehaviour
     private int _goodPoints, _badPoints;
     private int _numberOfShot;
 
+    [SerializeField] private GameObject _finishMenu;
+
     public void AddGoodPoint()
     {
         _goodPoints++;
@@ -27,6 +29,7 @@ public class ExerciseScoreManager : MonoBehaviour
     public void ExerciseFinished()
     {
         // TODO
+        _finishMenu.SetActive(true);
         Debug.Log("Exercise finished!");
     }
 }
