@@ -2660,10 +2660,6 @@ PrefabInstance:
       propertyPath: _playerTransform
       value: 
       objectReference: {fileID: 350552406}
-    - target: {fileID: 423562752475168454, guid: 784866517965f6a4683d3c5344630671, type: 3}
-      propertyPath: _waitTimeBetweenScore
-      value: 3
-      objectReference: {fileID: 0}
     - target: {fileID: 983684406306003005, guid: 784866517965f6a4683d3c5344630671, type: 3}
       propertyPath: m_RootOrder
       value: 6
