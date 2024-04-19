@@ -2,23 +2,35 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using TMPro;
 
 public class FreeShotExercise : MonoBehaviour
 {
     private GameObject _currSC;
 
+    private bool _canShoot = false;
+    private float _timerWaitNextShot = 0f;
+
+    private float _nextShotArc, _nextShotStrength;
+
     [Header("Range")]
     [SerializeField] private float _xArc;
     [SerializeField] private float _minStrength;
     [SerializeField] private float _maxStrength;
+    [SerializeField] private Transform _model;
 
     [Header("Util")]
     [SerializeField] private SCExercise _shuttleCockPrefab;
     [SerializeField] private ExerciseScoreManager _scoreManager;
+    [SerializeField] private Transform _playerTransform;
 
     [Header("Exercise Parameters")]
     [SerializeField] private int _shuttleCockExerciseNumber;
     [SerializeField] private float _waitTimeBetweenScore;
+
+    [Header("UI")]
+    [SerializeField] private Transform _canvasUITransform;
+    [SerializeField] private TMP_Text _nextShotTimeText;
 
     private void Awake()
     {
@@ -39,34 +51,62 @@ public class FreeShotExercise : MonoBehaviour
         StartCoroutine(SCExercise());
     }
 
+    private void Update()
+    {
+        if (!_canShoot && _timerWaitNextShot > 0f)
+        {
+            _timerWaitNextShot -= Time.deltaTime;
+            _nextShotTimeText.text = ((int)(_timerWaitNextShot + 1)).ToString();
+        }
+        else if (!_canShoot)
+        {
+            _canShoot = true;
+            _nextShotTimeText.text = "Shot!";
+        }
+
+        //_canvasUITransform.LookAt(_playerTransform);
+    }
+
     private IEnumerator SCExercise()
     {
-        var waitTime = new WaitForSeconds(_waitTimeBetweenScore);
+        //var waitTime = new WaitForSeconds(_waitTimeBetweenScore);
         
         int scCount = 0;
 
         while (scCount < _shuttleCockExerciseNumber)
         {
+            _canShoot = false;
+            _timerWaitNextShot = _waitTimeBetweenScore;
+
+            CalculateNextShot();
+
+            // Then wait before sending another one
+            yield return new WaitUntil(() => _canShoot);
+
             LaunchShuttleCock();
+
+            scCount++;
 
             // Wait for sc to hit something and callback
             yield return new WaitUntil(() => _currSC == null);
-
-            // Then wait before sending another one
-            yield return waitTime;
-
-            scCount++;
         }
+
+        _nextShotTimeText.text = "Finished!";
     }
 
     private void LaunchShuttleCock()
     {
-        float randomStrength = Random.Range(_maxStrength, _maxStrength + _minStrength);
-        float randomArc = Random.Range(-_xArc, _xArc);
-
         var nSC = Instantiate(_shuttleCockPrefab, transform.position, Quaternion.identity);
-        nSC.Rb.velocity = (transform.forward + new Vector3(Mathf.Cos(Mathf.Deg2Rad * (randomArc + 90f)), 0, Mathf.Sin(Mathf.Deg2Rad * (randomArc + 90f))).normalized).normalized * randomStrength;
+        nSC.Rb.velocity = (transform.forward + new Vector3(Mathf.Cos(Mathf.Deg2Rad * (_nextShotArc + 90f)), 0, Mathf.Sin(Mathf.Deg2Rad * (_nextShotArc + 90f))).normalized).normalized * _nextShotStrength;
         _currSC = nSC.gameObject;
+    }
+
+    private void CalculateNextShot()
+    {
+        _nextShotStrength = Random.Range(_maxStrength, _maxStrength + _minStrength);
+        _nextShotArc = Random.Range(-_xArc, _xArc);
+
+        _model.rotation = Quaternion.Euler(0f, -_nextShotArc, 0f);
     }
 
     private void ShotResult(int side, FiledColliderEvent.EFieldType eType)
