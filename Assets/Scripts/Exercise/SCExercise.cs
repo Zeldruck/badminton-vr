@@ -7,9 +7,8 @@ public class SCExercise : MonoBehaviour
     public Rigidbody Rb { get; private set; }
 
 
-
-    private void Awake()
+    private void Start()
     {
-        Rb = GetComponent<Rigidbody>();
+        Rb = gameObject.GetComponent<hitVolant>().rb;
     }
 }
