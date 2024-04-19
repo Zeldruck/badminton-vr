@@ -7,6 +7,7 @@ using Debug = UnityEngine.Debug;
 // Script permettant de frapper corectement le volant
 public class hitVolant : MonoBehaviour
 {
+    public Rigidbody rb { get; private set; }
 
     private Vector3 initVelocity;
     private Vector3 initRotation;
@@ -16,11 +17,8 @@ public class hitVolant : MonoBehaviour
     Boolean hit;
     private XRGrabInteractable interactable;
 
-    [SerializeField]
-    XRBaseController right_controller;
-
-    [SerializeField]
-    XRBaseController left_controller;
+    public XRBaseController right_controller;
+    public XRBaseController left_controller;
 
     public float duration = 0.3f;
     public float amplitude = 1f;
@@ -28,11 +26,8 @@ public class hitVolant : MonoBehaviour
     private void Awake()
     {
         interactable = GetComponent<XRGrabInteractable>();
-    }
+        rb = gameObject.GetComponent<Rigidbody>();
 
-    // Start is called before the first frame update
-    void Start()
-    {
         initVelocity = Vector3.zero;
         initRotation = Vector3.zero;
         t = 0;
@@ -41,15 +36,15 @@ public class hitVolant : MonoBehaviour
         hit = false;
     }
 
+    // Start is called before the first frame update
+    void Start()
+    {
+        
+    }
+
     private void OnCollisionEnter(Collision collision)
     {
-<<<<<<< Updated upstream
-        Rigidbody rb = transform.GetComponent<Rigidbody>();
-        rb.isKinematic = false; // Reactive les collisions quand on touche quelque chose
-=======
- 
         //rb.isKinematic = false; // Reactive les collisions quand on touche quelque chose
->>>>>>> Stashed changes
         if (collision.gameObject.tag.Equals("raquette"))
         {
             sendHaptics();
@@ -59,18 +54,9 @@ public class hitVolant : MonoBehaviour
 
     private void OnCollisionExit(Collision collision)
     {
-        Rigidbody rb = transform.GetComponent<Rigidbody>();
         if (collision.gameObject.tag.Equals("raquette") == true && this.gameObject.tag.Equals("Shuttlecock") && (watchHit.ElapsedMilliseconds > 100 || !watchHit.IsRunning)) // On applique le changement de velocite que si l'objet a le tag raquette
         {
-            initVelocity = rb.velocity;
-            initRotation = initVelocity.normalized; // On prend la direction et la vitesse du volant
-
-            t = 0;
-            rb.isKinematic = true;
-            hit = true;
-            watchHit.Reset(); // Lance un timeur pour eviter le flicker
-            watchHit.Start();
-
+            ActivatePhysic();
         }
 
         else if (collision.gameObject.tag.Equals("raquette") == false || watchHit.ElapsedMilliseconds > 100) // Le temps est la a cause du flicker des collisions exit
@@ -83,7 +69,6 @@ public class hitVolant : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Rigidbody rb = transform.GetComponent<Rigidbody>();
         if (rb.isKinematic == true && hit == true)
         {
             t += 1f / 60; // incremment du temps de la trajectoire
@@ -109,6 +94,18 @@ public class hitVolant : MonoBehaviour
             transform.GetChild(2).GetComponent<TrailRenderer>().startColor = Color.yellow;
 
         }
+    }
+
+    public void ActivatePhysic()
+    {
+        initVelocity = rb.velocity;
+        initRotation = initVelocity.normalized; // On prend la direction et la vitesse du volant
+
+        t = 0;
+        rb.isKinematic = true;
+        hit = true;
+        watchHit.Reset(); // Lance un timeur pour eviter le flicker
+        watchHit.Start();
     }
 
     void sendHaptics()

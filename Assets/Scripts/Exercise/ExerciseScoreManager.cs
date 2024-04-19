@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ExerciseScoreManager : MonoBehaviour
 {
@@ -6,6 +7,7 @@ public class ExerciseScoreManager : MonoBehaviour
     private int _numberOfShot;
 
     [SerializeField] private GameObject _finishMenu;
+    [SerializeField] private TMPro.TMP_Text _scoreText;
 
     public void AddGoodPoint()
     {
@@ -31,5 +33,12 @@ public class ExerciseScoreManager : MonoBehaviour
         // TODO
         _finishMenu.SetActive(true);
         Debug.Log("Exercise finished!");
+
+        _scoreText.text = $"{_goodPoints} / {_numberOfShot}";
+    }
+
+    public void MenuScene(string name)
+    {
+        SceneManager.LoadScene(name);
     }
 }

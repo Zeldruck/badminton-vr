@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.XR.Interaction.Toolkit;
 using TMPro;
 using Unity.VisualScripting;
 
@@ -21,13 +22,12 @@ public class FreeShotExercise : MonoBehaviour
     [SerializeField] private Transform _model;
 
     [Header("Util")]
-<<<<<<< Updated upstream
-    [SerializeField] private SCExercise _shuttleCockPrefab;
-=======
     [SerializeField] private GameObject _shuttleCockPrefab;
->>>>>>> Stashed changes
     [SerializeField] private ExerciseScoreManager _scoreManager;
     [SerializeField] private Transform _playerTransform;
+    [Space]
+    [SerializeField] private XRBaseController lController;
+    [SerializeField] private XRBaseController rController;
 
     [Header("Exercise Parameters")]
     [SerializeField] private int _shuttleCockExerciseNumber;
@@ -97,24 +97,23 @@ public class FreeShotExercise : MonoBehaviour
         }
 
         _nextShotTimeText.text = "Finished!";
+        _scoreManager.ExerciseFinished();
     }
 
     private void LaunchShuttleCock()
     {
         var nSC = Instantiate(_shuttleCockPrefab, transform.position, Quaternion.identity);
-<<<<<<< Updated upstream
+
         nSC.Rb.velocity = (transform.forward + new Vector3(Mathf.Cos(Mathf.Deg2Rad * (_nextShotArc + 90f)), 0, Mathf.Sin(Mathf.Deg2Rad * (_nextShotArc + 90f))).normalized).normalized * _nextShotStrength;
         _currSC = nSC.gameObject;
-=======
         //nSC.GetComponent<Script>().left_controller = lController;
         //nSC.GetComponent<hitVolant>().right_controller = rController;
 
         //Debug.Log(nSC.GetComponent<hitVolant>().name);
-        nSC.GetComponent<Rigidbody>().velocity = (transform.forward + new Vector3(Mathf.Cos(Mathf.Deg2Rad * (_nextShotArc + 90f)), 0.5f, Mathf.Sin(Mathf.Deg2Rad * (_nextShotArc + 90f))).normalized).normalized * _nextShotStrength;
+        nSC.GetComponent<Rigidbody>().velocity = (transform.forward + new Vector3(Mathf.Cos(Mathf.Deg2Rad * (_nextShotArc + 90f)), 0.0f, Mathf.Sin(Mathf.Deg2Rad * (_nextShotArc + 90f))).normalized).normalized * _nextShotStrength;
         _currSC = nSC.gameObject;
 
         //nSC.GetComponent<hitVolant>().ActivatePhysic();
->>>>>>> Stashed changes
     }
 
     private void CalculateNextShot()
