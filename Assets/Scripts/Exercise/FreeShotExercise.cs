@@ -104,8 +104,6 @@ public class FreeShotExercise : MonoBehaviour
     {
         var nSC = Instantiate(_shuttleCockPrefab, transform.position, Quaternion.identity);
 
-        nSC.Rb.velocity = (transform.forward + new Vector3(Mathf.Cos(Mathf.Deg2Rad * (_nextShotArc + 90f)), 0, Mathf.Sin(Mathf.Deg2Rad * (_nextShotArc + 90f))).normalized).normalized * _nextShotStrength;
-        _currSC = nSC.gameObject;
         //nSC.GetComponent<Script>().left_controller = lController;
         //nSC.GetComponent<hitVolant>().right_controller = rController;
 
