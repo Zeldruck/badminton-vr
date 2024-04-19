@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8669300718646378465}
   - component: {fileID: 3356515055868286135}
   - component: {fileID: 592164794929345913}
-  - component: {fileID: -2184033186642625052}
+  - component: {fileID: 7529682796436229822}
   m_Layer: 0
   m_Name: ShuttleCock Exercise
   m_TagString: Shuttlecock
@@ -37,7 +37,7 @@ Transform:
   - {fileID: 873980872160553097}
   - {fileID: 7006975069827469512}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &1940248006640108517
 Rigidbody:
@@ -308,7 +308,7 @@ MonoBehaviour:
   left_controller: {fileID: 0}
   duration: 0.1
   amplitude: 0.1
---- !u!114 &-2184033186642625052
+--- !u!114 &7529682796436229822
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -317,9 +317,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 3856804787639468890}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ff2454fcd997af9418c3a35805e07335, type: 3}
+  m_Script: {fileID: 11500000, guid: 14832035b7669094596585a118c33ed8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  right_controller: {fileID: 0}
+  left_controller: {fileID: 0}
+  duration: 0.3
+  amplitude: 1
 --- !u!1 &6789127203751670452
 GameObject:
   m_ObjectHideFlags: 0
