@@ -93,7 +93,9 @@ public class hitVolant : MonoBehaviour
             velocity.x = (float)vx * initRotation.x;
             velocity.y = (float)vy;
             velocity.z = (float)vx * initRotation.z;
-           
+
+            rb.rotation = Quaternion.LookRotation(-1*velocity);
+
 
             rb.MovePosition(transform.position + velocity / 60); // Avance d'une frame
         }
