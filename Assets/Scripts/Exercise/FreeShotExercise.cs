@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.XR.Interaction.Toolkit;
 using TMPro;
 
 public class FreeShotExercise : MonoBehaviour
@@ -20,9 +21,12 @@ public class FreeShotExercise : MonoBehaviour
     [SerializeField] private Transform _model;
 
     [Header("Util")]
-    [SerializeField] private SCExercise _shuttleCockPrefab;
+    [SerializeField] private hitVolant _shuttleCockPrefab;
     [SerializeField] private ExerciseScoreManager _scoreManager;
     [SerializeField] private Transform _playerTransform;
+    [Space]
+    [SerializeField] private XRBaseController lController;
+    [SerializeField] private XRBaseController rController;
 
     [Header("Exercise Parameters")]
     [SerializeField] private int _shuttleCockExerciseNumber;
@@ -92,13 +96,19 @@ public class FreeShotExercise : MonoBehaviour
         }
 
         _nextShotTimeText.text = "Finished!";
+        _scoreManager.ExerciseFinished();
     }
 
     private void LaunchShuttleCock()
     {
         var nSC = Instantiate(_shuttleCockPrefab, transform.position, Quaternion.identity);
-        nSC.Rb.velocity = (transform.forward + new Vector3(Mathf.Cos(Mathf.Deg2Rad * (_nextShotArc + 90f)), 0, Mathf.Sin(Mathf.Deg2Rad * (_nextShotArc + 90f))).normalized).normalized * _nextShotStrength;
+        nSC.left_controller = lController;
+        nSC.right_controller = rController;
+
+        nSC.rb.velocity = (transform.forward + new Vector3(Mathf.Cos(Mathf.Deg2Rad * (_nextShotArc + 90f)), 0, Mathf.Sin(Mathf.Deg2Rad * (_nextShotArc + 90f))).normalized).normalized * _nextShotStrength;
         _currSC = nSC.gameObject;
+
+        nSC.ActivatePhysic();
     }
 
     private void CalculateNextShot()
