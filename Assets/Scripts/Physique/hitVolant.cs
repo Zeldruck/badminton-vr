@@ -43,8 +43,13 @@ public class hitVolant : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+<<<<<<< Updated upstream
         Rigidbody rb = transform.GetComponent<Rigidbody>();
         rb.isKinematic = false; // Reactive les collisions quand on touche quelque chose
+=======
+ 
+        //rb.isKinematic = false; // Reactive les collisions quand on touche quelque chose
+>>>>>>> Stashed changes
         if (collision.gameObject.tag.Equals("raquette"))
         {
             sendHaptics();
@@ -94,10 +99,15 @@ public class hitVolant : MonoBehaviour
             velocity.y = (float)vy;
             velocity.z = (float)vx * initRotation.z;
 
-            rb.rotation = Quaternion.LookRotation(-1*velocity);
+            //rb.rotation = Quaternion.LookRotation(-1*velocity);
 
-
+            transform.GetChild(2).GetComponent<TrailRenderer>().startColor = Color.blue;
             rb.MovePosition(transform.position + velocity / 60); // Avance d'une frame
+        }
+        else
+        {
+            transform.GetChild(2).GetComponent<TrailRenderer>().startColor = Color.yellow;
+
         }
     }
 
