@@ -170,13 +170,13 @@ public class FreeShotExercise : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        Gizmos.color = Color.red;
+        Gizmos.color = Color.green;
         Gizmos.DrawWireSphere(transform.position, 0.25f);
 
         Gizmos.DrawLine(transform.position, transform.position + new Vector3(Mathf.Cos(Mathf.Deg2Rad * (_xArc + 90f)), 0, Mathf.Sin(Mathf.Deg2Rad * (_xArc + 90f))).normalized * _maxStrength);
         Gizmos.DrawLine(transform.position, transform.position + new Vector3(Mathf.Cos(Mathf.Deg2Rad * (-_xArc + 90f)), 0, Mathf.Sin(Mathf.Deg2Rad * (-_xArc + 90f))).normalized * _maxStrength);
 
-        Gizmos.color = Color.green;
+        Gizmos.color = Color.red;
         Gizmos.DrawLine(transform.position, transform.position + new Vector3(Mathf.Cos(Mathf.Deg2Rad * (_xArc + 90f)), 0, Mathf.Sin(Mathf.Deg2Rad * (_xArc + 90f))).normalized * _minStrength);
         Gizmos.DrawLine(transform.position, transform.position + new Vector3(Mathf.Cos(Mathf.Deg2Rad * (-_xArc + 90f)), 0, Mathf.Sin(Mathf.Deg2Rad * (-_xArc + 90f))).normalized * _minStrength);
 
