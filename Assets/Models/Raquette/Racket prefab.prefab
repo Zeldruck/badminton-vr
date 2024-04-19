@@ -6903,6 +6903,7 @@ GameObject:
   - component: {fileID: 7712351021356445762}
   - component: {fileID: 7888945545015873506}
   - component: {fileID: 7216167145231289078}
+  - component: {fileID: 8901965712994322812}
   m_Layer: 0
   m_Name: Racket prefab
   m_TagString: Untagged
@@ -7142,8 +7143,29 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.75, y: 0.017004192, z: 0.22229421}
-  m_Center: {x: 0, y: -0.15047231, z: -0.0022132248}
+  m_Size: {x: 0.27568436, y: 0.017004192, z: 0.22229421}
+  m_Center: {x: 0.23715782, y: -0.15047231, z: -0.0022132248}
+--- !u!65 &8901965712994322812
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7313439188738251222}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.47838184, y: 0.017004192, z: 0.033640783}
+  m_Center: {x: -0.13901655, y: -0.1504723, z: -0.0016687438}
 --- !u!1 &7315028714545462215
 GameObject:
   m_ObjectHideFlags: 0
