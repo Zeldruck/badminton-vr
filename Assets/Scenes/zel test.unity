@@ -4853,6 +4853,7 @@ MonoBehaviour:
       m_Calls: []
   shuttlecockTag: 
 --- !u!1001 &1988229215
+PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
