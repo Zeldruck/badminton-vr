@@ -6,22 +6,8 @@ using UnityEngine.SceneManagement;
 
 public class SwitchScene : MonoBehaviour
 {
-    public string scene_name;
-    
-    // Start is called before the first frame update
-    void Start()
+    public void ToScene(string sceneName)
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    public void toScene()
-    {
-        SceneManager.LoadScene(scene_name);
+        SceneManager.LoadScene(sceneName);
     }
 }

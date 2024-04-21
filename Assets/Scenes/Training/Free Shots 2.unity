@@ -5890,8 +5890,8 @@ MonoBehaviour:
   _playerTransform: {fileID: 0}
   lController: {fileID: 428211192}
   rController: {fileID: 1778538512}
-  _shuttleCockExerciseNumber: 10
-  _waitTimeBetweenScore: 3
+  _shuttleCockExerciseNumber: 15
+  _waitTimeBetweenScore: 2
   _canvasUITransform: {fileID: 1939971120096202635}
   _nextShotTimeText: {fileID: 1010578227943659920}
 --- !u!114 &595132099082399490
