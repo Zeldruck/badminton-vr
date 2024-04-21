@@ -12,6 +12,7 @@ public class FreeShotExercise : MonoBehaviour
 
     private bool _canShoot = false;
     private float _timerWaitNextShot = 0f;
+    private bool _handleEvent = false;
 
     private float _nextShotArc, _nextShotStrength;
 
@@ -20,7 +21,9 @@ public class FreeShotExercise : MonoBehaviour
     [SerializeField] private float _minStrength;
     [SerializeField] private float _maxStrength;
     [SerializeField] private Transform _model;
-
+    [Space]
+    [SerializeField, Range(1, 2)] private int _playerSide = 1;
+    
     [Header("Util")]
     [SerializeField] private hitVolant _shuttleCockPrefab;
     [SerializeField] private ExerciseScoreManager _scoreManager;
@@ -106,6 +109,8 @@ public class FreeShotExercise : MonoBehaviour
 
     private void LaunchShuttleCock()
     {
+        _handleEvent = false;
+        
         var nSC = Instantiate(_shuttleCockPrefab, transform.position, Quaternion.identity);
         nSC.left_controller = lController;
         nSC.right_controller = rController;
@@ -126,7 +131,11 @@ public class FreeShotExercise : MonoBehaviour
 
     private void ShotResult(int side, FiledColliderEvent.EFieldType eType)
     {
-        bool isGoodSide = side == 1;
+        if (_handleEvent) return;
+
+        _handleEvent = true;
+        
+        bool isGoodSide = side != _playerSide;
 
         switch (eType)
         {
