@@ -36,10 +36,12 @@ public class FieldManager : MonoBehaviour
         {
             FiledColliderEvent[] filedColliderEvents = _colliderRoots[i].GetComponentsInChildren<FiledColliderEvent>();
 
+            var x = i;
+            
             foreach (var colliderEvent in filedColliderEvents)
             {
                 colliderEvent.shuttlecockTag = shuttlecockTag;
-                colliderEvent.onTriggerSucceed.AddListener(() => SCTouchGround(i + 1, colliderEvent.Type));
+                colliderEvent.onTriggerSucceed.AddListener(() => SCTouchGround(x + 1, colliderEvent.Type));
             }
         }
 
