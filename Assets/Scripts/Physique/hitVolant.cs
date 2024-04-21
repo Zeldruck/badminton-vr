@@ -44,6 +44,7 @@ public class hitVolant : MonoBehaviour
         if (collision.gameObject.tag.Equals("raquette"))
         {
             sendHaptics();
+            //t = 0;
         }
 
     }
@@ -105,11 +106,11 @@ public class hitVolant : MonoBehaviour
 
     public void ActivatePhysic()
     {
-        initVelocity = rb.velocity;
+        initVelocity = 2*rb.velocity;
         initRotation = initVelocity.normalized; // On prend la direction et la vitesse du volant
         hit = true;
 
-        t = -3;
+        t = 0;
 
     }
 
