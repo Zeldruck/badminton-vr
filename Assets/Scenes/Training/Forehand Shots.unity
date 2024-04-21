@@ -5840,6 +5840,7 @@ MonoBehaviour:
   _minStrength: 9
   _maxStrength: 10.5
   _model: {fileID: 2052780211849111417}
+  _playerSide: 1
   _shuttleCockPrefab: {fileID: 8539865084791248220, guid: 33e527df3cde31e488c0fc425c1d2793, type: 3}
   _scoreManager: {fileID: 2780768236256538073}
   _playerTransform: {fileID: 0}

@@ -2704,7 +2704,7 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 10, y: 2.220446e-16, z: 10}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: -0.01, z: 0}
 --- !u!1 &1259915857
 GameObject:
   m_ObjectHideFlags: 0
@@ -5840,6 +5840,7 @@ MonoBehaviour:
   _minStrength: 7.5
   _maxStrength: 7.5
   _model: {fileID: 2052780211849111417}
+  _playerSide: 1
   _shuttleCockPrefab: {fileID: 8539865084791248220, guid: 33e527df3cde31e488c0fc425c1d2793, type: 3}
   _scoreManager: {fileID: 2780768236256538073}
   _playerTransform: {fileID: 0}
