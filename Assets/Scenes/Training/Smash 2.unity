@@ -5885,7 +5885,7 @@ MonoBehaviour:
   _minStrength: 7.5
   _maxStrength: 7.5
   _model: {fileID: 2052780211849111417}
-  _shuttleCockPrefab: {fileID: 7529682796436229822, guid: 9dccb82da01965a4ebfbc41fa7b1189b, type: 3}
+  _shuttleCockPrefab: {fileID: 8539865084791248220, guid: 33e527df3cde31e488c0fc425c1d2793, type: 3}
   _scoreManager: {fileID: 2780768236256538073}
   _playerTransform: {fileID: 0}
   lController: {fileID: 1444494257}
