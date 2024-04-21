@@ -11,11 +11,10 @@ GameObject:
   - component: {fileID: 5551514342645747768}
   - component: {fileID: 1940248006640108517}
   - component: {fileID: 907496155249610542}
-  - component: {fileID: 8669300718646378465}
-  - component: {fileID: 3356515055868286135}
+  - component: {fileID: 9219188169474422676}
   - component: {fileID: 592164794929345913}
-  - component: {fileID: 7529682796436229822}
-  m_Layer: 7
+  - component: {fileID: 8539865084791248220}
+  m_Layer: 0
   m_Name: ShuttleCock Exercise
   m_TagString: Shuttlecock
   m_Icon: {fileID: 0}
@@ -36,9 +35,10 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 873980872160553097}
+  - {fileID: 758463141301861799}
   - {fileID: 7006975069827469512}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -1.155, y: -551.705, z: 2.767}
 --- !u!54 &1940248006640108517
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -47,8 +47,8 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3856804787639468890}
   serializedVersion: 4
-  m_Mass: 1
-  m_Drag: 0.5
+  m_Mass: 0.1
+  m_Drag: 0.7
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
@@ -65,7 +65,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!114 &907496155249610542
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -254,8 +254,8 @@ MonoBehaviour:
   m_StartingSingleGrabTransformers: []
   m_StartingMultipleGrabTransformers: []
   m_AddDefaultGrabTransformers: 1
---- !u!135 &8669300718646378465
-SphereCollider:
+--- !u!136 &9219188169474422676
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -272,30 +272,11 @@ SphereCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 3
-  m_Radius: 0.031384166
-  m_Center: {x: 0, y: 0.00048123673, z: 0.02962473}
---- !u!65 &3356515055868286135
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3856804787639468890}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.09293157, y: 0.09516807, z: 0.06292352}
-  m_Center: {x: 0.00094494224, y: 0.00021161884, z: 0.081263684}
+  serializedVersion: 2
+  m_Radius: 0.052036393
+  m_Height: 0.14549331
+  m_Direction: 2
+  m_Center: {x: -0.0033416613, y: -0.001758404, z: 0.068107836}
 --- !u!114 &592164794929345913
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -312,7 +293,7 @@ MonoBehaviour:
   left_controller: {fileID: 0}
   duration: 0.1
   amplitude: 0.1
---- !u!114 &7529682796436229822
+--- !u!114 &8539865084791248220
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -329,6 +310,61 @@ MonoBehaviour:
   duration: 0.3
   amplitude: 1
   _trailRenderer: {fileID: 2135109270965930646}
+--- !u!1 &6731686121883970351
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 758463141301861799}
+  - component: {fileID: 628317608333445455}
+  m_Layer: 7
+  m_Name: Collider
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &758463141301861799
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6731686121883970351}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5551514342645747768}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!136 &628317608333445455
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6731686121883970351}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.052036393
+  m_Height: 0.14549331
+  m_Direction: 2
+  m_Center: {x: -0.0033416613, y: -0.001758404, z: 0.068107836}
 --- !u!1 &6789127203751670452
 GameObject:
   m_ObjectHideFlags: 0
@@ -340,7 +376,7 @@ GameObject:
   - component: {fileID: 873980872160553097}
   - component: {fileID: 529360446475934321}
   - component: {fileID: 5752426430689610382}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: 10526_Shuttlecock_v1_SG
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -507,10 +543,6 @@ PrefabInstance:
     - target: {fileID: 6360203895047738068, guid: 8995f7a78b36e7447b930103a055ae08, type: 3}
       propertyPath: m_Name
       value: Trail_ShuttleCock
-      objectReference: {fileID: 0}
-    - target: {fileID: 6360203895047738068, guid: 8995f7a78b36e7447b930103a055ae08, type: 3}
-      propertyPath: m_Layer
-      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
