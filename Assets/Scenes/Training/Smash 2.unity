@@ -5804,7 +5804,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Smash easy exercise
+  m_text: Smash medium exercise
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -5894,8 +5894,8 @@ MonoBehaviour:
   _playerTransform: {fileID: 0}
   lController: {fileID: 1038382220}
   rController: {fileID: 1581903785}
-  _shuttleCockExerciseNumber: 10
-  _waitTimeBetweenScore: 3
+  _shuttleCockExerciseNumber: 15
+  _waitTimeBetweenScore: 2
   _canvasUITransform: {fileID: 1939971120096202635}
   _nextShotTimeText: {fileID: 1010578227943659920}
 --- !u!114 &595132099082399490
@@ -7762,7 +7762,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 10 shots
+  m_text: 15 shots
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

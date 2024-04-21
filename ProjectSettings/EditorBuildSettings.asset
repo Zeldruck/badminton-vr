@@ -6,14 +6,23 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
-    guid: 55daccc09a3b69647bbab145b54a3ab3
-  - enabled: 1
     path: Assets/Scenes/Main Menu Theo.unity
     guid: 1f54c24c367437644a6e9d5de14d4ce1
   - enabled: 1
-    path: Assets/Scenes/zel test.unity
-    guid: 6aea1c22dd7e908459f4992f770bed95
+    path: Assets/Scenes/Training/Forehand Shots.unity
+    guid: e467ab9b2632dbc43a75f9cdd7fffd53
+  - enabled: 1
+    path: Assets/Scenes/Training/Forehand Shots 2.unity
+    guid: a19aa46dad1473549a0fdb30dc02b6e1
+  - enabled: 1
+    path: Assets/Scenes/Training/Free Shots.unity
+    guid: c9e6cd0d550f0954e8cb087041279307
+  - enabled: 1
+    path: Assets/Scenes/Training/Free Shots 2.unity
+    guid: f20f7194b47ef8d40922ecdb23337b89
+  - enabled: 1
+    path: Assets/Scenes/Training/Smash.unity
+    guid: 31cb6eab920e6874eb425e69778fd38c
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: bfa1182bd221b4ca89619141f66f1260, type: 2}
     Unity.XR.WindowsMR.Settings: {fileID: 11400000, guid: dc5a169419fa04987b057f65238cf3ba, type: 2}
