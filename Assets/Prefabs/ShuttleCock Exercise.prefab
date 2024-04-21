@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 3356515055868286135}
   - component: {fileID: 592164794929345913}
   - component: {fileID: 7529682796436229822}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: ShuttleCock Exercise
   m_TagString: Shuttlecock
   m_Icon: {fileID: 0}
@@ -29,6 +29,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3856804787639468890}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -37,7 +38,6 @@ Transform:
   - {fileID: 873980872160553097}
   - {fileID: 7006975069827469512}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &1940248006640108517
 Rigidbody:
@@ -225,6 +225,10 @@ MonoBehaviour:
   m_SmoothRotation: 0
   m_SmoothRotationAmount: 5
   m_TightenRotation: 0.5
+  m_TrackScale: 1
+  m_SmoothScale: 0
+  m_SmoothScaleAmount: 8
+  m_TightenScale: 0.1
   m_ThrowOnDetach: 1
   m_ThrowSmoothingDuration: 0.25
   m_ThrowSmoothingCurve:
@@ -324,6 +328,7 @@ MonoBehaviour:
   left_controller: {fileID: 0}
   duration: 0.3
   amplitude: 1
+  _trailRenderer: {fileID: 2135109270965930646}
 --- !u!1 &6789127203751670452
 GameObject:
   m_ObjectHideFlags: 0
@@ -335,7 +340,7 @@ GameObject:
   - component: {fileID: 873980872160553097}
   - component: {fileID: 529360446475934321}
   - component: {fileID: 5752426430689610382}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: 10526_Shuttlecock_v1_SG
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -349,13 +354,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6789127203751670452}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5551514342645747768}
-  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &529360446475934321
 MeshFilter:
@@ -503,11 +508,20 @@ PrefabInstance:
       propertyPath: m_Name
       value: Trail_ShuttleCock
       objectReference: {fileID: 0}
+    - target: {fileID: 6360203895047738068, guid: 8995f7a78b36e7447b930103a055ae08, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8995f7a78b36e7447b930103a055ae08, type: 3}
+--- !u!96 &2135109270965930646 stripped
+TrailRenderer:
+  m_CorrespondingSourceObject: {fileID: 3668133487469920732, guid: 8995f7a78b36e7447b930103a055ae08, type: 3}
+  m_PrefabInstance: {fileID: 3406618427657112394}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7006975069827469512 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5655249936058997634, guid: 8995f7a78b36e7447b930103a055ae08, type: 3}

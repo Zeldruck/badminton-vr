@@ -22,7 +22,7 @@ public class FreeShotExercise : MonoBehaviour
     [SerializeField] private Transform _model;
 
     [Header("Util")]
-    [SerializeField] private GameObject _shuttleCockPrefab;
+    [SerializeField] private hitVolant _shuttleCockPrefab;
     [SerializeField] private ExerciseScoreManager _scoreManager;
     [SerializeField] private Transform _playerTransform;
     [Space]
@@ -52,8 +52,6 @@ public class FreeShotExercise : MonoBehaviour
         fieldManager._inFrontFieldEvent += (side) => ShotResult(side, FiledColliderEvent.EFieldType.InFrontField);
         fieldManager._inBackFieldEvent += (side) => ShotResult(side, FiledColliderEvent.EFieldType.InBackField);
         fieldManager._netEvent += () => ShotResult(-1, FiledColliderEvent.EFieldType.Net);
-
-        StartCoroutine(SCExercise());
     }
 
     private void Update()
@@ -70,6 +68,12 @@ public class FreeShotExercise : MonoBehaviour
         }
 
         //_canvasUITransform.LookAt(_playerTransform);
+    }
+
+    [ContextMenu("Launch Exercise")]
+    public void LaunchExercise()
+    {
+        StartCoroutine(SCExercise());
     }
 
     private IEnumerator SCExercise()
@@ -103,20 +107,18 @@ public class FreeShotExercise : MonoBehaviour
     private void LaunchShuttleCock()
     {
         var nSC = Instantiate(_shuttleCockPrefab, transform.position, Quaternion.identity);
-
-        //nSC.GetComponent<Script>().left_controller = lController;
-        //nSC.GetComponent<hitVolant>().right_controller = rController;
-
-        //Debug.Log(nSC.GetComponent<hitVolant>().name);
-        nSC.GetComponent<Rigidbody>().velocity = (transform.forward + new Vector3(Mathf.Cos(Mathf.Deg2Rad * (_nextShotArc + 90f)), 0.0f, Mathf.Sin(Mathf.Deg2Rad * (_nextShotArc + 90f))).normalized).normalized * _nextShotStrength;
+        nSC.left_controller = lController;
+        nSC.right_controller = rController;
+        
+        var rot = -transform.rotation.eulerAngles.y + 90f;
+        
+        nSC.rb.velocity = (transform.forward + new Vector3(Mathf.Cos(Mathf.Deg2Rad * (_nextShotArc + rot)), 0f, Mathf.Sin(Mathf.Deg2Rad * (_nextShotArc + rot))).normalized).normalized * _nextShotStrength;
         _currSC = nSC.gameObject;
-
-        //nSC.GetComponent<hitVolant>().ActivatePhysic();
     }
 
     private void CalculateNextShot()
     {
-        _nextShotStrength = Random.Range(_maxStrength, _maxStrength + _minStrength);
+        _nextShotStrength = Random.Range(_minStrength, _maxStrength);
         _nextShotArc = Random.Range(-_xArc, _xArc);
 
         _model.rotation = Quaternion.Euler(0f, -_nextShotArc, 0f);
@@ -186,12 +188,14 @@ public class FreeShotExercise : MonoBehaviour
         Gizmos.color = Color.green;
         Gizmos.DrawWireSphere(transform.position, 0.25f);
 
-        Gizmos.DrawLine(transform.position, transform.position + new Vector3(Mathf.Cos(Mathf.Deg2Rad * (_xArc + 90f)), 0, Mathf.Sin(Mathf.Deg2Rad * (_xArc + 90f))).normalized * _maxStrength);
-        Gizmos.DrawLine(transform.position, transform.position + new Vector3(Mathf.Cos(Mathf.Deg2Rad * (-_xArc + 90f)), 0, Mathf.Sin(Mathf.Deg2Rad * (-_xArc + 90f))).normalized * _maxStrength);
+        var rot = -transform.rotation.eulerAngles.y + 90f;
+        
+        Gizmos.DrawLine(transform.position, transform.position + new Vector3(Mathf.Cos(Mathf.Deg2Rad * (_xArc + rot)), 0, Mathf.Sin(Mathf.Deg2Rad * (_xArc + rot))).normalized * _maxStrength);
+        Gizmos.DrawLine(transform.position, transform.position + new Vector3(Mathf.Cos(Mathf.Deg2Rad * (-_xArc + rot)), 0, Mathf.Sin(Mathf.Deg2Rad * (-_xArc + rot))).normalized * _maxStrength);
 
         Gizmos.color = Color.red;
-        Gizmos.DrawLine(transform.position, transform.position + new Vector3(Mathf.Cos(Mathf.Deg2Rad * (_xArc + 90f)), 0, Mathf.Sin(Mathf.Deg2Rad * (_xArc + 90f))).normalized * _minStrength);
-        Gizmos.DrawLine(transform.position, transform.position + new Vector3(Mathf.Cos(Mathf.Deg2Rad * (-_xArc + 90f)), 0, Mathf.Sin(Mathf.Deg2Rad * (-_xArc + 90f))).normalized * _minStrength);
+        Gizmos.DrawLine(transform.position, transform.position + new Vector3(Mathf.Cos(Mathf.Deg2Rad * (_xArc + rot)), 0, Mathf.Sin(Mathf.Deg2Rad * (_xArc + rot))).normalized * _minStrength);
+        Gizmos.DrawLine(transform.position, transform.position + new Vector3(Mathf.Cos(Mathf.Deg2Rad * (-_xArc + rot)), 0, Mathf.Sin(Mathf.Deg2Rad * (-_xArc + rot))).normalized * _minStrength);
 
         Gizmos.color = Color.black;
         Gizmos.DrawLine(transform.position, transform.position + transform.forward);
