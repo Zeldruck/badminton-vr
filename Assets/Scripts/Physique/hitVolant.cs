@@ -44,7 +44,6 @@ public class hitVolant : MonoBehaviour
         if (collision.gameObject.tag.Equals("raquette"))
         {
             sendHaptics();
-            //t = 0;
         }
 
     }
@@ -94,14 +93,9 @@ public class hitVolant : MonoBehaviour
 
             //rb.rotation = Quaternion.LookRotation(-1*velocity);
 
-            _trailRenderer.startColor = Color.blue;
             rb.MovePosition(transform.position + velocity / 60); // Avance d'une frame
         }
-        else
-        {
-            _trailRenderer.startColor = Color.yellow;
 
-        }
     }
 
     public void ActivatePhysic()
