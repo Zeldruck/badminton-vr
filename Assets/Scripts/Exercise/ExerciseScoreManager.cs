@@ -30,10 +30,12 @@ public class ExerciseScoreManager : MonoBehaviour
 
     public void ExerciseFinished()
     {
-        // TODO
         _finishMenu.SetActive(true);
+        
+#if  UNITY_EDITOR
         Debug.Log("Exercise finished!");
-
+#endif
+        
         _scoreText.text = $"{_goodPoints} / {_numberOfShot}";
     }
 

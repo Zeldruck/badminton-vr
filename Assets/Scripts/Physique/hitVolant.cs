@@ -23,6 +23,8 @@ public class hitVolant : MonoBehaviour
     public float duration = 0.3f;
     public float amplitude = 1f;
 
+    [SerializeField] private TrailRenderer _trailRenderer;
+
     private void Awake()
     {
         interactable = GetComponent<XRGrabInteractable>();
@@ -34,12 +36,6 @@ public class hitVolant : MonoBehaviour
         watchHit = new Stopwatch();
         watchHit.Start();
         hit = false;
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -86,12 +82,12 @@ public class hitVolant : MonoBehaviour
 
             //rb.rotation = Quaternion.LookRotation(-1*velocity);
 
-            transform.GetChild(2).GetComponent<TrailRenderer>().startColor = Color.blue;
+            _trailRenderer.startColor = Color.blue;
             rb.MovePosition(transform.position + velocity / 60); // Avance d'une frame
         }
         else
         {
-            transform.GetChild(2).GetComponent<TrailRenderer>().startColor = Color.yellow;
+            _trailRenderer.startColor = Color.yellow;
 
         }
     }
