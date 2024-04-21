@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.XR.Interaction.Toolkit;
 using TMPro;
+using Unity.VisualScripting;
 
 public class FreeShotExercise : MonoBehaviour
 {
@@ -21,7 +22,7 @@ public class FreeShotExercise : MonoBehaviour
     [SerializeField] private Transform _model;
 
     [Header("Util")]
-    [SerializeField] private hitVolant _shuttleCockPrefab;
+    [SerializeField] private GameObject _shuttleCockPrefab;
     [SerializeField] private ExerciseScoreManager _scoreManager;
     [SerializeField] private Transform _playerTransform;
     [Space]
@@ -102,13 +103,15 @@ public class FreeShotExercise : MonoBehaviour
     private void LaunchShuttleCock()
     {
         var nSC = Instantiate(_shuttleCockPrefab, transform.position, Quaternion.identity);
-        nSC.left_controller = lController;
-        nSC.right_controller = rController;
 
-        nSC.rb.velocity = (transform.forward + new Vector3(Mathf.Cos(Mathf.Deg2Rad * (_nextShotArc + 90f)), 0, Mathf.Sin(Mathf.Deg2Rad * (_nextShotArc + 90f))).normalized).normalized * _nextShotStrength;
+        //nSC.GetComponent<Script>().left_controller = lController;
+        //nSC.GetComponent<hitVolant>().right_controller = rController;
+
+        //Debug.Log(nSC.GetComponent<hitVolant>().name);
+        nSC.GetComponent<Rigidbody>().velocity = (transform.forward + new Vector3(Mathf.Cos(Mathf.Deg2Rad * (_nextShotArc + 90f)), 0.0f, Mathf.Sin(Mathf.Deg2Rad * (_nextShotArc + 90f))).normalized).normalized * _nextShotStrength;
         _currSC = nSC.gameObject;
 
-        nSC.ActivatePhysic();
+        //nSC.GetComponent<hitVolant>().ActivatePhysic();
     }
 
     private void CalculateNextShot()
