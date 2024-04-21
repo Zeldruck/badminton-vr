@@ -303,8 +303,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   right_controller: {fileID: 0}
   left_controller: {fileID: 0}
-  duration: 0.3
-  amplitude: 1
+  duration: 0.1
+  amplitude: 0.3
+  _trailRenderer: {fileID: 0}
 --- !u!1 &6731686121883970351
 GameObject:
   m_ObjectHideFlags: 0
