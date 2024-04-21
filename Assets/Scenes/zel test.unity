@@ -4863,11 +4863,11 @@ PrefabInstance:
     - target: {fileID: 592164794929345913, guid: 2babeff96b37bef4f927854075e83ad6, type: 3}
       propertyPath: left_controller
       value: 
-      objectReference: {fileID: 1688468838}
+      objectReference: {fileID: 1004034614}
     - target: {fileID: 592164794929345913, guid: 2babeff96b37bef4f927854075e83ad6, type: 3}
       propertyPath: right_controller
       value: 
-      objectReference: {fileID: 1004034614}
+      objectReference: {fileID: 1688468838}
     - target: {fileID: 3856804787639468890, guid: 2babeff96b37bef4f927854075e83ad6, type: 3}
       propertyPath: m_Name
       value: 10526_Shuttlecock_v1_L3
@@ -4886,7 +4886,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5551514342645747768, guid: 2babeff96b37bef4f927854075e83ad6, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -2.5576806
       objectReference: {fileID: 0}
     - target: {fileID: 5551514342645747768, guid: 2babeff96b37bef4f927854075e83ad6, type: 3}
       propertyPath: m_LocalRotation.w
@@ -4917,13 +4917,21 @@ PrefabInstance:
       value: 2.767
       objectReference: {fileID: 0}
     - target: {fileID: 8539865084791248220, guid: 2babeff96b37bef4f927854075e83ad6, type: 3}
+      propertyPath: duration
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8539865084791248220, guid: 2babeff96b37bef4f927854075e83ad6, type: 3}
+      propertyPath: amplitude
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8539865084791248220, guid: 2babeff96b37bef4f927854075e83ad6, type: 3}
       propertyPath: left_controller
       value: 
-      objectReference: {fileID: 1688468838}
+      objectReference: {fileID: 1004034614}
     - target: {fileID: 8539865084791248220, guid: 2babeff96b37bef4f927854075e83ad6, type: 3}
       propertyPath: right_controller
       value: 
-      objectReference: {fileID: 1004034614}
+      objectReference: {fileID: 1688468838}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -5289,11 +5297,11 @@ PrefabInstance:
       objectReference: {fileID: 1688468838}
     - target: {fileID: 423562752475168454, guid: 784866517965f6a4683d3c5344630671, type: 3}
       propertyPath: _maxStrength
-      value: 4
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 423562752475168454, guid: 784866517965f6a4683d3c5344630671, type: 3}
       propertyPath: _minStrength
-      value: 3
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 423562752475168454, guid: 784866517965f6a4683d3c5344630671, type: 3}
       propertyPath: _playerTransform
@@ -5325,7 +5333,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 983684406306003005, guid: 784866517965f6a4683d3c5344630671, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -2.4363403
       objectReference: {fileID: 0}
     - target: {fileID: 983684406306003005, guid: 784866517965f6a4683d3c5344630671, type: 3}
       propertyPath: m_LocalRotation.w

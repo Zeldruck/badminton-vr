@@ -55,7 +55,7 @@ public class hitVolant : MonoBehaviour
             ActivatePhysic();
         }
 
-        else if (collision.gameObject.tag.Equals("raquette") == false || watchHit.ElapsedMilliseconds > 100) // Le temps est la a cause du flicker des collisions exit
+        else if (collision.gameObject.tag.Equals("raquette") == false || watchHit.ElapsedMilliseconds > 500) // Le temps est la a cause du flicker des collisions exit
         {
             rb.isKinematic = false; 
             hit = false;
@@ -65,6 +65,17 @@ public class hitVolant : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (t < 0 && hit == true)
+        {
+            t += 1;
+        }
+        if(t ==0 && hit == true)
+        {
+            rb.isKinematic = true;
+            watchHit.Reset(); // Lance un timeur pour eviter le flicker
+            watchHit.Start();
+        }
+
         if (rb.isKinematic == true && hit == true)
         {
             t += 1f / 60; // incremment du temps de la trajectoire
@@ -96,12 +107,10 @@ public class hitVolant : MonoBehaviour
     {
         initVelocity = rb.velocity;
         initRotation = initVelocity.normalized; // On prend la direction et la vitesse du volant
-
-        t = 0;
-        rb.isKinematic = true;
         hit = true;
-        watchHit.Reset(); // Lance un timeur pour eviter le flicker
-        watchHit.Start();
+
+        t = -3;
+
     }
 
     void sendHaptics()
